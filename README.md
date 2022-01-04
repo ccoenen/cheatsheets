@@ -1,7 +1,16 @@
 # Cheatsheet Collection
 
-## Build Requirements
+This is both a collection of cheatsheets and a way to write/compile cheatsheets in LaTeX.
 
+## Features
+- CI action for Github
+- SVG-Images can be loaded directly
+- Literature-links using bibtex
+- Code-Highlighting using Pygments
+- Relatively little setup-code in each cheatsheet
+- Neat CC-license in each pdf
+
+## Build Requirements
 
 for minted (code highlighting)
 - add `--shell-escape` to your typesetting executable (in texworks, or in your compile script)
@@ -12,7 +21,6 @@ for minted (code highlighting)
 for svg
 - install inkscape
 - have inkscape on your path or add it in a batchfile (look at `compile-windows.bat` for an example)
-
 
 ## Further Reading
 

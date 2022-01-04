@@ -1,0 +1,15 @@
+# things created while latex, biber or pdflatex compile
+/_minted-*
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.listing
+*.log
+*.out
+*.pdf
+*.run.xml
+*.synctex.gz

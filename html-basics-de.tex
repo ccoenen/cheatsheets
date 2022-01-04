@@ -1,0 +1,217 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[ngerman]{babel}
+
+\input{lib/template-layout-and-fonts}
+\input{lib/template-source-and-license}
+\input{lib/template-codebox}
+\input{lib/template-bibtex}
+
+\definecolor{accentcolor}{HTML}{0000CC}
+\bibliography{html-basics}
+
+\begin{document}
+
+{\color{accentcolor}HTML Basics Cheatsheet}
+
+\begin{multicols}{3}
+
+\scriptsize
+%--------------MAIN CONTENT HERE----------------
+
+\textbf{H}yper\textbf{t}ext \textbf{M}arkup \textbf{L}anguage
+
+Mit dieser Seitenbeschreibungssprache werden Internetseiten und andere Dokumente geschrieben. Die Aufteilung ist \textbf{semantisch}, wir geben den Computern damit zu verstehen, welcher Teil des Dokuments welche Aufgabe hat. HTML kommt in der Regel gemeinsam mit CSS (Styling) und JavaScript (Verhalten) zum Einsatz.
+
+Gute weiteführende Quellen sind SELFHTML \cite{selfhtml} und das Mozilla Developer Network \cite{mdn}.
+
+\section*{Aufbau}
+
+\includegraphics[width=\columnwidth]{example-image-a}
+% -- TODO -- hier eine nette Grafik, die Anfangs- und End-Tag erklärt.
+
+HTML besteht aus \textbf{Tags}, die Text oder andere Tags enthalten können:
+\begin{codebox}{html}{}
+<title>HTML Basics Cheatsheet</title>
+\end{codebox}
+
+Manche Tags haben auch \textbf{Attribute}:
+\begin{codebox}{html}{}
+<a href="portfolio.html">Oh, mein Portfolio!</a>
+\end{codebox}
+
+In HTML gibt es außerdem \textbf{Kommentare}:
+\begin{codebox}{html}{}
+<!-- hier in der Mitte ist der Kommentar -->
+\end{codebox}
+
+
+\subsection*{Grundgerüst}
+Einige Dinge muss jedes HTML-Dokument enthalten, das Folgende ist das Minimale, was eine HTML-Datei braucht:
+\begin{codebox}{html}{}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titel</title>
+  </head>
+  <body>
+    <!-- hier folgt das eigentliche Dokument -->
+  </body>
+</html>
+\end{codebox}
+
+
+\section*{Tags}
+\subsection*{Grundstruktur und Metainformationen}
+Das \mintinline{html}|<html>|-Tag ist der Wurzelknoten eines HTML-Dokuments. Alle weiteren Elemente müssen in diesem Element enthalten sein. (,,Nachkommen`` bzw. Kind-Elemente).
+\begin{codebox}{html}{}
+<html> ... </html>
+\end{codebox}
+
+Im \mintinline{html}|<head>| werden Metadaten des Dokuments gesammelt. Hierzu gehören auch Skripte und Stylesheets.
+\begin{codebox}{html}{}
+<head> ... </head>
+\end{codebox}
+
+Im \mintinline{html}|<body>| steht der Hauptinhalt eines HTML-Dokuments. Jedes Dokument muss genau ein \mintinline{html}|<body>|-Element besitzen.
+\begin{codebox}{html}{}
+<body> ... </body>
+\end{codebox}
+
+\mintinline{html}|<title>| definiert Titel eines Dokuments, der in der Titelzeile des Browsers oder im Tab der betreffenden Seite angezeigt wird. Darf ausschließlich Text enthalten. Eventuell enthaltene Tags werden nicht interpretiert.
+\begin{codebox}{html}{}
+<title>Meine Webseite</title>
+\end{codebox}
+
+\mintinline{html}|<meta>| Wird für die Definition von Metadaten verwenden, die mit keinem anderen HTML-Element definiert werden können. Zum Beispiel welches Charakter-Set man verwendet. Meta darf selbst keine Tags enthalten. Es hat auch kein schließendes Tag.
+\begin{codebox}{html}{}
+<meta charset="utf-8">
+\end{codebox}
+
+\mintinline{html}|<link>| Wird verwendet, um externe CSS-Dateien in das aktuelle HTML-Dokument einzubinden, oder auch um auf alternative Versionen des selben Dokuments zu verlinken (z.B. RSS Feeds):
+\begin{codebox}{html}{}
+<link rel="stylesheet" type="text/css" href="example.css">
+<link rel="icon" href="/favicon.ico">
+<link rel="alternate" type="application/rss+xml" href="https://example.com/feed/">
+\end{codebox}
+
+\mintinline{html}|<style>| kann Definition CSS-Definitionen direkt enthalten:
+\begin{codebox}{html}{}
+<style>
+h1 {
+  margin-left: 2em;
+}
+</style>
+\end{codebox}
+
+\mintinline{html}|<script>| kann entweder auf Scripte verweisen oder direkt JavaScript-Code enthalten:
+
+\begin{codebox}{html}{}
+<script src="javascript-datei.js">
+\end{codebox}
+
+\begin{codebox}{html}{}
+<script>
+console.log("Hallo, Welt");
+</script>
+\end{codebox}
+
+Die Script-Tags werden direkt an der Stelle ausgeführt, wo sie stehen. Üblicherweise packt man Sie ans Ende des Dokuments vor das \mintinline{html}|</body>|-Tag oder in den \mintinline{html}|<head>|.
+
+
+\subsection*{Text-Auszeichnung}
+
+Der Inhalt dieses Elements soll als Absatz dargestellt werden.
+\begin{codebox}{html}{}
+<p></p>
+\end{codebox}
+
+
+Hiermit werden Überschriften definiert. Es gibt sechs verschiedene Hierarchieebenen, wobei <h1> für die Hauptüberschrift steht und <h6> für eine Überschrift der untersten Ebene.
+\begin{codebox}{html}{}
+<h1></h1>
+<h2></h2>
+...
+<h6></h6>
+\end{codebox}
+
+Bezeichnet einen Zeilenumbruch.
+\begin{codebox}{html}{}
+<br>
+\end{codebox}
+
+Bezeichnet einen thematischen Bruch zwischen Absätzen eines Abschnitts, Artikels oder anderem längeren Inhalt.
+\begin{codebox}{html}{}
+<hr>
+\end{codebox}
+
+Listen
+\begin{codebox}{html}{}
+<ol>
+  <li>Eintrag Nr. 1</li>
+  <li>Eintrag Nr. 2</li>
+</ol>
+<ul>
+  <li>Wurst</li>
+  <li>Käse</li>
+</ul>
+\end{codebox}
+
+
+
+\subsection*{Layout}
+
+Bezeichnet ein allgemeines Container-Element ohne spezielle semantische Bedeutung.
+\begin{codebox}{html}{}
+<div>
+\end{codebox}
+
+Markiert einen allgemeinen Textabschnitt.
+\begin{codebox}{html}{}
+<span>
+\end{codebox}
+
+Definiert den Kopfteil ("header") einer Seite oder eines Abschnitts. Er enthält oft ein Logo, den Titel der Website und die Seitennavigation.
+\begin{codebox}{html}{}
+<header>
+\end{codebox}
+
+Beschreibt einen Abschnitt der ausschließlich Navigationslinks enthält.
+\begin{codebox}{html}{}
+<nav>
+\end{codebox}
+
+Definiert den Hauptinhalt der Seite. Es ist nur ein <main> Element pro Seite zulässig.
+\begin{codebox}{html}{}
+<main>
+\end{codebox}
+
+Beschreibt einen Abschnitt eines Dokuments.
+\begin{codebox}{html}{}
+<section>
+\end{codebox}
+
+Beschreibt eigenständigen Inhalt, der unabhängig von den übrigen Inhalten sein kann.
+\begin{codebox}{html}{}
+<article>
+\end{codebox}
+
+Steht für eine Randbemerkung. Der übrige Inhalt sollte auch verständlich sein, wenn dieses Element entfernt wird.
+\begin{codebox}{html}{}
+<aside>
+\end{codebox}
+
+Definiert den Fußteil ("footer") einer Seite oder eines Abschnitts. Er enthält oft Copyright-Hinweise, einen Link auf das Impressum oder Kontaktadressen.
+\begin{codebox}{html}{}
+<footer>
+\end{codebox}
+
+
+%-------------MAIN CONTENT DONE----------------
+
+
+\printbibliography
+\attribution{Garrit Schaap \& Claudius Coenen}
+\end{multicols}
+\end{document}

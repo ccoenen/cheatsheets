@@ -29,9 +29,10 @@ jobs:
         with:
           root_file: |
             css-basics-de.tex
+            html-basics-de.tex
           extra_system_packages: "py-pygments inkscape"
           latexmk_shell_escape: true
       - uses: actions/upload-artifact@v2
         with:
           name: PDF
-          path: css-basics-de.pdf
+          path: "*.pdf"

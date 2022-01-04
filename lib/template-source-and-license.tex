@@ -1,0 +1,21 @@
+\usepackage[
+    type={CC},
+    modifier={by-nc-sa},
+    version={4.0},
+]{doclicense}
+
+
+\newcommand{\attribution}[1]{
+\interlinepenalty 10000
+\vspace{\baselineskip}
+\linethickness{0.4mm} % Thickness of the footer line
+{\color{accentcolor}\line(1,0){45}} % Print the line with a custom color
+\footnotesize{
+\begin{tabbing}
+\faicon{users}~ \= Created by #1\\
+\faicon{github} \> Source: \url{https://github.com/ccoenen/cheatsheets}\\
+\faicon{calendar} \> Date: \today\\
+\end{tabbing}
+\doclicenseThis
+}
+}

@@ -1,0 +1,41 @@
+\usepackage{tcolorbox}
+\tcbuselibrary{most,listings,minted}
+
+\tcbset{
+tcbox width=auto,
+left=0mm,
+top=0mm,
+bottom=0mm,
+right=0mm,
+boxsep=1mm,
+middle=1mm
+}
+
+\newtcblisting{codebox}[2]{
+colback=black!2,
+colframe=black!0,
+colbacktitle=black!18,
+top=0mm,
+toptitle=0mm, 
+left=0mm,
+bottom=0mm,
+arc=0pt,
+outer arc=0pt,
+attach boxed title to top right={xshift=1mm,yshift=-4mm},
+title=#1,
+fonttitle=\color{white},
+enhanced,
+minted options={
+  numbers=left,
+  style=tcblatex,
+  fontsize=\scriptsize,
+  breaklines,
+  breaksymbolleft=,
+  autogobble,
+  linenos=false,
+  numbersep=0.7em
+},
+minted language=#1,
+listing only, 
+listing engine=minted,
+}

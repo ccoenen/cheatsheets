@@ -1,0 +1,212 @@
+\documentclass[10pt,a4paper]{article}
+
+\input{lib/template-layout-and-fonts}
+\input{lib/template-source-and-license}
+\input{lib/template-codebox}
+\input{lib/template-bibtex}
+
+\definecolor{accentcolor}{HTML}{007700}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\color{accentcolor}CSS Basics Cheatsheet}
+
+\begin{multicols}{3}
+
+\scriptsize
+%--------------MAIN CONTENT HERE----------------
+
+\section*{Einbinden}
+CSS wird in HTML-Dokumenten verwendet, um Elemente zu stylen. Es gibt drei Möglichkeiten, CSS zu verwenden:
+
+\subsection*{CSS-Datei}
+Eine eigenständige Datei kann in HTML mit dem Link-Tag eingebunden werden.
+\begin{codebox}{html}{}
+<link rel="stylesheet" href="some-file-name.css">
+\end{codebox}
+Dieses Link-Tag steht üblicherweise im Head-Element in HTML.
+
+\subsection*{Style-Tag}
+Im Style-Tag stehen die CSS-Definitionen direkt in der HTML-Datei.
+\begin{codebox}{html}{}
+<style>
+/* Ihr CSS hier! */
+</style>
+\end{codebox}
+Das Style-Tag steht ebenfalls oft im Head-Element.
+
+\subsection*{Style-Attribut}
+HTML-Elemente können ein style-Attribut haben, in dem direkt CSS-Eigenschaften stehen.
+\begin{codebox}{html}{}
+Ein <span style="color: black">schwarzes</span> Wort.
+\end{codebox}
+
+\section*{Selektoren}
+Selektoren bestimmen, was einen Style erhalten soll. Hiermit wählen Sie HTML-Elemente, die verändert werden sollen.
+
+
+Der \textbf{Element-Selektor} wählt alle Elemente direkt über den Namen des Elements aus.
+\begin{codebox}{html}{}
+<h1>Meine Überschrift</h1>
+\end{codebox}
+\begin{codebox}{css}{}
+h1 {
+  font-size: 10em;
+}
+\end{codebox}
+
+Der \textbf{Class-Selektor} kann über das class-Attribut eines Elements gesetzt werden.
+\begin{codebox}{html}{}
+<div class="content">Inhalt</div>
+\end{codebox}
+\begin{codebox}{css}{}
+.content {
+  color: #FF00FF;
+}
+\end{codebox}
+Man kann auch mehrere CSS Klassen, getrennt durch Leerzeichen, auf ein Element anwenden.
+\begin{codebox}{html}{}
+<div class="content blue">Inhalt</div>
+\end{codebox}
+\begin{codebox}{css}{}
+.content {
+  color: #FF00FF;
+}
+.blue {
+  background-color: #0000ff;
+}
+\end{codebox}
+
+Der \textbf{id-Selektor} wählt das Element mit der zugehörigen id aus. Achtung eine id darf nur einmal pro Dokument vergeben werden.
+\begin{codebox}{html}{}
+<div id="name">Garrit</div>
+\end{codebox}
+\begin{codebox}{css}{}
+#name {
+  font-size: 3em;
+  color: #00ff00;
+}
+\end{codebox}
+
+
+\section*{Einheiten}
+\subsection*{Farben}
+\begin{codebox}{css}{}
+color: red;            /* Schlüsselwort */
+color: #00ff00         /* Hex-Farbcode */
+color: rgb(0, 0, 255); /* rgb Schreibweise */
+\end{codebox}
+
+\subsection*{Längen und Abstände}
+\begin{codebox}{css}{}
+padding: 0;       /* 0 braucht keine Einheit. */
+font-size: 12pt;  /* Punkt */
+border: 1px       /* Pixel */
+line-height: 1.2em; /* Größe relativ zur Breite eines "m" */
+\end{codebox}
+
+Achtung: Pixel sind gedachte 96dpi Pixel, und damit oftmals nicht wirklich exakt ein Pixel.
+
+
+\section*{Eigenschaften}
+Eigenschaften müssen in Selektoren stehen. Es gibt buchstäblich hunderte CSS-Eigenschaften\cite{w3c-css}, hier daher nur eine kleine Auswahl.
+
+\subsection*{Aussehen}
+Die \textbf{background-color}-Eigenschaft setzt die Hintergrundfarbe eines Elements.
+\begin{codebox}{css}{title="test"}
+background-color: #FF0000;
+\end{codebox}
+
+Die \textbf{background-image}-Eigenschaft legt ein Hintergrundbild für ein Element fest. Hintergrundbilder werden immer über Hintergrundfarben gelegt.
+\begin{codebox}{css}{}
+background-image: url("pfad/zum/bild.jpg");
+\end{codebox}
+
+Die \textbf{border}-Eigenschaft legt die Eigenschaften des Rahmens eines Elementes fest
+\begin{codebox}{css}{}
+border-width: 1px;
+border-style: solid;
+border-color: #00FF00;
+\end{codebox}
+
+
+
+\subsection*{Layout}
+Die \textbf{float}-Eigenschaft bestimmt, ob ein Element aus dem normalen Fluss herausgelöst werden soll und nachfolgende Inhalte auf der linken oder rechten Seite des Elements platziert werden sollen.
+\begin{codebox}{css}{}
+float: left;
+float: right;
+float: none;
+\end{codebox}
+
+Die \textbf{margin}-Eigenschaften sind für die Außenabstände aller vier Seiten eines Elements verantwortlich.
+\begin{codebox}{css}{}
+margin-top: 10px;
+margin-right: 5%;
+margin-bottom: 1em;
+margin-left: auto;
+\end{codebox}
+
+Die \textbf{padding}-Eigenschaften sind für die Innenabstände aller vier Seiten eines Elementes verantwortlich.
+\begin{codebox}{css}{}
+padding-top: 10px;
+padding-right: 5%;
+padding-bottom: 1em;
+padding-left: auto;
+\end{codebox}
+
+Die \textbf{position}-Eigenschaft legt die Positionsart eines Elements fest. Für die Positionierung selbst werden die Eigenschaften top, right, bottom oder left verwendet.
+\begin{codebox}{css}{}
+position: absolute;
+position: relative;
+position: fixed;
+\end{codebox}
+
+% TODO: Box-Modell-Grafik irgendwo?
+
+\subsection*{Text}
+
+Die CSS Eigenschaft \textbf{color} setzt die Vordergrundfarbe des Textinhalts eines Elements und seiner Dekorationen.
+\begin{codebox}{css}{}
+color: #FF00FF;
+\end{codebox}
+
+Die CSS Eigenschaft \textbf{text-align} beschreibt, wie Inlineinhalte wie Text in ihrem Elternblockelement ausgerichtet werden.
+\begin{codebox}{css}{}
+text-align: center;
+\end{codebox}
+
+Die \textbf{text-decoration} Eigenschaft wird dazu verwendet, die Textformatierung auf underline, overline, line-through oder blink zu setzen.
+\begin{codebox}{css}{}
+text-decoration: underline;
+\end{codebox}
+
+Die \textbf{font-family} erlaubt es, eine priorisierte Liste von Schriftfamiliennamen für ein ausgewähltes Element anzugeben. Achtung: Die Schrift muss auf dem Anzeigegerät auch vorhanden sein!
+\begin{codebox}{css}{}
+font-family: "Helvetica", "Arial", sans-serif;
+\end{codebox}
+
+Die \textbf{font-size} spezifiziert die Schriftgöße.
+\begin{codebox}{css}{}
+font-size: 12px;
+\end{codebox}
+
+Die \textbf{font-style} legt fest ob eine Schriftart als normal, italic oder oblique angezeigt wird.
+\begin{codebox}{css}{}
+font-style: italic;
+\end{codebox}
+
+Die \textbf{font-weight} definiert die Dicke der Schrift. Einige Schriftarten sind jedoch nicht in allen Werten verfügbar und unterstützen bspw. nur die Werte normal und bold.
+\begin{codebox}{css}{}
+font-weight: bold;
+\end{codebox}
+
+
+%-------------MAIN CONTENT DONE----------------
+
+
+\printbibliography
+\attribution{Garrit Schaap \& Claudius Coenen}
+\end{multicols}
+\end{document}

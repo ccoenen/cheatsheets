@@ -10,7 +10,12 @@
 
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
-\usepackage[inkscapepath=build/svg-latex]{svg}
+\usepackage[
+inkscapepath=build/svg-latex,
+inkscapelatex=false %upside: graphic exactly as designed. downside: text may be in a different font
+]{svg}
+
+\usepackage{csquotes}
 
 \setlength{\columnsep}{1cm}
 \setlength{\parindent}{0pt}

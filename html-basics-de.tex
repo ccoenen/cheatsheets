@@ -22,15 +22,19 @@
 
 Mit dieser Seitenbeschreibungssprache werden Internetseiten und andere Dokumente geschrieben. Die Aufteilung ist \textbf{semantisch}, wir geben den Computern damit zu verstehen, welcher Teil des Dokuments welche Aufgabe hat. HTML kommt in der Regel gemeinsam mit CSS (Styling) und JavaScript (Verhalten) zum Einsatz.
 
-Gute weiteführende Quellen sind SELFHTML \cite{selfhtml} und das Mozilla Developer Network \cite{mdn}.
+Gute weiterführende Quellen sind SELFHTML \cite{selfhtml} und das Mozilla Developer Network \cite{mdn}.
 
 \section*{Aufbau}
 
 \includesvg[width=\columnwidth]{html-tag-parts.svg}
+\vspace{5mm}
 
 HTML besteht aus \textbf{Tags}, die Text oder andere Tags enthalten können:
 \begin{codebox}{html}{}
 <title>HTML Basics Cheatsheet</title>
+\end{codebox}
+\begin{codebox}{html}{}
+<p>verschachtelte <em>Elemente</em>!</p>
 \end{codebox}
 
 Manche Tags haben auch \textbf{Attribute}:
@@ -62,40 +66,42 @@ Einige Dinge muss jedes HTML-Dokument enthalten, das Folgende ist das Minimale, 
 
 
 \section*{Tags}
+Der HTML-Standard definiert sehr viele verschiedene Tags, eine Gesamtliste finden Sie beim W3C \cite{w3c-elements}.
+
 \subsection*{Grundstruktur und Metainformationen}
-Das <html>-Tag ist der Wurzelknoten eines HTML-Dokuments. Alle weiteren Elemente müssen in diesem Element enthalten sein. (,,Nachkommen`` bzw. Kind-Elemente).
+Das \texttt{<html>}-Tag ist der Wurzelknoten eines HTML-Dokuments. Alle weiteren Elemente müssen in diesem Element enthalten sein. (\enquote{Nachkommen} bzw. \enquote{Kind-Elemente}):
 \begin{codebox}{html}{}
 <html> ... </html>
 \end{codebox}
 
-Im \mintinline{html}|<head>| werden Metadaten des Dokuments gesammelt. Hierzu gehören auch Skripte und Stylesheets.
+Im \texttt{<head>} werden Metadaten des Dokuments gesammelt. Hierzu gehören auch Skripte und Stylesheets:
 \begin{codebox}{html}{}
 <head> ... </head>
 \end{codebox}
 
-Im \mintinline{html}|<body>| steht der Hauptinhalt eines HTML-Dokuments. Jedes Dokument muss genau ein \mintinline{html}|<body>|-Element besitzen.
+Im \texttt{<body>} steht der Hauptinhalt eines HTML-Dokuments. Jedes Dokument muss genau ein \texttt{<body>}-Element besitzen:
 \begin{codebox}{html}{}
 <body> ... </body>
 \end{codebox}
 
-\mintinline{html}|<title>| definiert Titel eines Dokuments, der in der Titelzeile des Browsers oder im Tab der betreffenden Seite angezeigt wird. Darf ausschließlich Text enthalten. Eventuell enthaltene Tags werden nicht interpretiert.
+\texttt{<title>} definiert Titel eines Dokuments, der in der Titelzeile des Browsers oder im Tab der betreffenden Seite angezeigt wird. Darf ausschließlich Text enthalten. Eventuell enthaltene Tags werden nicht interpretiert:
 \begin{codebox}{html}{}
 <title>Meine Webseite</title>
 \end{codebox}
 
-\mintinline{html}|<meta>| Wird für die Definition von Metadaten verwenden, die mit keinem anderen HTML-Element definiert werden können. Zum Beispiel welches Charakter-Set man verwendet. Meta darf selbst keine Tags enthalten. Es hat auch kein schließendes Tag.
+\texttt{<meta>} wird für die Definition von Metadaten verwenden, die mit keinem anderen HTML-Element definiert werden können. Zum Beispiel welches Charakter-Set man verwendet. \texttt{<meta>} darf selbst keine Tags enthalten. Es hat auch kein schließendes Tag:
 \begin{codebox}{html}{}
 <meta charset="utf-8">
 \end{codebox}
 
-\mintinline{html}|<link>| Wird verwendet, um externe CSS-Dateien in das aktuelle HTML-Dokument einzubinden, oder auch um auf alternative Versionen des selben Dokuments zu verlinken (z.B. RSS Feeds):
+\texttt{<link>} Wird verwendet, um externe CSS-Dateien in das aktuelle HTML-Dokument einzubinden, oder auch um auf alternative Versionen desselben Dokuments zu verlinken (z.B. RSS Feeds):
 \begin{codebox}{html}{}
 <link rel="stylesheet" type="text/css" href="example.css">
 <link rel="icon" href="/favicon.ico">
 <link rel="alternate" type="application/rss+xml" href="https://example.com/feed/">
 \end{codebox}
 
-\mintinline{html}|<style>| kann Definition CSS-Definitionen direkt enthalten:
+\texttt{<style>} kann CSS-Definitionen direkt enthalten:
 \begin{codebox}{html}{}
 <style>
 h1 {
@@ -104,30 +110,32 @@ h1 {
 </style>
 \end{codebox}
 
-\mintinline{html}|<script>| kann entweder auf Scripte verweisen oder direkt JavaScript-Code enthalten:
+Es gibt außerdem ein \texttt{style}-Attribut, das dann nur für das einzelne Element gilt:
+\begin{codebox}{html}{}
+<span style="letter-spacing: 1em;">breit</span>
+\end{codebox}
 
+\texttt{<script>} kann entweder auf Scripte verweisen oder direkt JavaScript-Code enthalten:
 \begin{codebox}{html}{}
 <script src="javascript-datei.js">
 \end{codebox}
-
 \begin{codebox}{html}{}
 <script>
 console.log("Hallo, Welt");
 </script>
 \end{codebox}
 
-Die Script-Tags werden direkt an der Stelle ausgeführt, wo sie stehen. Üblicherweise packt man Sie ans Ende des Dokuments vor das \mintinline{html}|</body>|-Tag oder in den \mintinline{html}|<head>|.
+Die Script-Tags werden direkt an der Stelle ausgeführt, wo sie stehen. Üblicherweise packt man Sie ans Ende des Dokuments vor das \texttt{</body>}-Tag oder in den \texttt{<head>}.
 
 
-\subsection*{Text-Auszeichnung}
+\subsection*{Inhalt und Text-Auszeichnung}
 
-Der Inhalt dieses Elements soll als Absatz dargestellt werden.
+Der Inhalt dieses Elements soll als Absatz (englisch \enquote{paragraph}) dargestellt werden:
 \begin{codebox}{html}{}
-<p></p>
+<p>Lorem Ipsum ...</p>
 \end{codebox}
 
-
-Hiermit werden Überschriften definiert. Es gibt sechs verschiedene Hierarchieebenen, wobei <h1> für die Hauptüberschrift steht und <h6> für eine Überschrift der untersten Ebene.
+Überschriften werden in \texttt{<h...>} (\enquote{heading}) definiert. Es gibt sechs verschiedene Hierarchie\-ebenen. Sinngemäß ist \texttt{<h1>}beispielsweise der Titel und \texttt{<h2>} eine Kapitelüberschrift:
 \begin{codebox}{html}{}
 <h1></h1>
 <h2></h2>
@@ -135,75 +143,84 @@ Hiermit werden Überschriften definiert. Es gibt sechs verschiedene Hierarchieeb
 <h6></h6>
 \end{codebox}
 
-Bezeichnet einen Zeilenumbruch.
+Einen einfachen Zeilenumbruch kann man mit \texttt{<br>} (\enquote{break row}) einfügen:
 \begin{codebox}{html}{}
 <br>
 \end{codebox}
 
-Bezeichnet einen thematischen Bruch zwischen Absätzen eines Abschnitts, Artikels oder anderem längeren Inhalt.
+Eine horizontale Linie zeichnet man mit \texttt{<hr>} (\enquote{horizontal row}). Damit zeigt man einen thematischen Bruch zwischen Absätzen eines Abschnitts, Artikels oder anderem längeren Inhalt:
 \begin{codebox}{html}{}
 <hr>
 \end{codebox}
 
-Listen
+Nummerierte \texttt{<ol>} (\enquote{ordered list}) oder Stichpunkt-Listen {<ul>} (\enquote{unordered list}) enthalten jeweils Einträge \texttt{<li>} (\enquote{list item}):
 \begin{codebox}{html}{}
 <ol>
-  <li>Eintrag Nr. 1</li>
-  <li>Eintrag Nr. 2</li>
+  <li>Cardio</li>
+  <li>Double Tap</li>
+  <li>Beware of Bathrooms</li>
+  <li>Seat belts</li>
 </ol>
 <ul>
-  <li>Wurst</li>
+  <li>Schrauben</li>
   <li>Käse</li>
+  <li>Zahnpasta</li>
 </ul>
 \end{codebox}
 
+\texttt{<img>} (\enquote{image}) bindet ein Bild ein. Vergessen Sie nicht, einen Alternativtext im \texttt{alt}-Attribut anzugeben.
+\begin{codebox}{html}{}
+<img src="xp.jpg" alt="Grüne Hügel vor blauem Himmel">
+\end{codebox}
 
+%% These are actually no longer neccessary, but this would be one way of leaving an intended gap at the bottom of a column:
+% \vfill\null
+% \columnbreak
+\subsection*{Struktur und Layout}
 
-\subsection*{Layout}
-
-Bezeichnet ein allgemeines Container-Element ohne spezielle semantische Bedeutung.
+\texttt{<div>} (\enquote{document division}) und \texttt{<span>} bezeichnen allgemeine Container-Elemente ohne spezielle Bedeutung. Sie werden oft verwendet, wenn weitere Gliederungs-Ebenen gebraucht werden und kein semantisches Tag passt. \texttt{<div>} ist ein Block-Element, \texttt{<span>} ist ein Inline-Element.
 \begin{codebox}{html}{}
 <div>
+  <!-- kann selbst Block-Elemente enthalten -->
+</div>
+\end{codebox}
+\begin{codebox}{html}{}
+<span>funktioniert in Text-Zeilen.</span>
 \end{codebox}
 
-Markiert einen allgemeinen Textabschnitt.
+\texttt{<header>} definiert den Kopfteil einer Seite oder eines Abschnitts. Er enthält oft ein Logo, den Titel der Website und die Seitennavigation:
 \begin{codebox}{html}{}
-<span>
+<header> ... </header>
 \end{codebox}
 
-Definiert den Kopfteil ("header") einer Seite oder eines Abschnitts. Er enthält oft ein Logo, den Titel der Website und die Seitennavigation.
+\texttt{<nav>} beschreibt einen Abschnitt der zur Navigation auf einer Internetseite gehört:
 \begin{codebox}{html}{}
-<header>
+<nav> ... </nav>
 \end{codebox}
 
-Beschreibt einen Abschnitt der ausschließlich Navigationslinks enthält.
+\texttt{<main>} definiert den Hauptinhalt der Seite. Es ist nur ein \texttt{<main>} Element pro Seite zulässig:
 \begin{codebox}{html}{}
-<nav>
+<main> ... </main>
 \end{codebox}
 
-Definiert den Hauptinhalt der Seite. Es ist nur ein <main> Element pro Seite zulässig.
+\texttt{<section>} kann einen zusammenhängenden Abschnitt in einem Dokument zusammenfassen:
 \begin{codebox}{html}{}
-<main>
+<section> ... </section>
 \end{codebox}
 
-Beschreibt einen Abschnitt eines Dokuments.
+\texttt{<article>} beschreibt eigenständigen Inhalt, der unabhängig von den übrigen Inhalten sein kann:
 \begin{codebox}{html}{}
-<section>
+<article> ... </article>
 \end{codebox}
 
-Beschreibt eigenständigen Inhalt, der unabhängig von den übrigen Inhalten sein kann.
+\texttt{<aside>} Steht für eine Randbemerkung. Der übrige Inhalt sollte auch verständlich sein, wenn dieses Element entfernt wird:
 \begin{codebox}{html}{}
-<article>
+<aside> ... </aside>
 \end{codebox}
 
-Steht für eine Randbemerkung. Der übrige Inhalt sollte auch verständlich sein, wenn dieses Element entfernt wird.
+\texttt{<footer>} Definiert den \enquote{Fußbereich} einer Seite oder eines Abschnitts. Er enthält oft Copyright-Hinweise, einen Link auf das Impressum oder Kontaktadressen:
 \begin{codebox}{html}{}
-<aside>
-\end{codebox}
-
-Definiert den Fußteil ("footer") einer Seite oder eines Abschnitts. Er enthält oft Copyright-Hinweise, einen Link auf das Impressum oder Kontaktadressen.
-\begin{codebox}{html}{}
-<footer>
+<footer> ... </footer>
 \end{codebox}
 
 

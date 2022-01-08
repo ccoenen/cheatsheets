@@ -12,6 +12,9 @@ This is both a collection of cheatsheets and a way to write/compile cheatsheets 
 
 ## Build Requirements
 
+tex/latex environment
+sudo apt install texlive-lang-german raleway texlive-fonts-extra texlive-bibtex-extra biber
+
 for minted (code highlighting)
 - add `--shell-escape` to your typesetting executable (in texworks, or in your compile script)
 - install python
@@ -21,6 +24,11 @@ for minted (code highlighting)
 for svg
 - install inkscape
 - have inkscape on your path or add it in a batchfile (look at `compile-windows.bat` for an example)
+
+continuous build on change:
+`while inotifywait -e close_write *.tex lib/*.tex; do ./compile-linux.sh; done`
+
+
 
 ## Further Reading
 

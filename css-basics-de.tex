@@ -22,29 +22,28 @@
 CSS wird in HTML-Dokumenten verwendet, um Elemente zu stylen. Es gibt drei Möglichkeiten, CSS zu verwenden:
 
 \subsection*{CSS-Datei}
-Eine eigenständige Datei kann in HTML mit dem Link-Tag eingebunden werden.
+Eine eigenständige Datei kann in HTML mit dem \texttt{<link>}-Tag eingebunden werden.
 \begin{codebox}{html}{}
 <link rel="stylesheet" href="some-file-name.css">
 \end{codebox}
-Dieses Link-Tag steht üblicherweise im Head-Element in HTML.
+Dieses \texttt{<link>}-Tag steht üblicherweise im \texttt{<head>}-Element in HTML.
 
 \subsection*{Style-Tag}
-Im Style-Tag stehen die CSS-Definitionen direkt in der HTML-Datei.
+Im \texttt{<style>}-Tag stehen die CSS-Definitionen direkt in der HTML-Datei, es steht ebenfalls oft im \texttt{<head>}.
 \begin{codebox}{html}{}
 <style>
 /* Ihr CSS hier! */
 </style>
 \end{codebox}
-Das Style-Tag steht ebenfalls oft im Head-Element.
 
 \subsection*{Style-Attribut}
-HTML-Elemente können ein style-Attribut haben, in dem direkt CSS-Eigenschaften stehen.
+HTML-Elemente können ein \texttt{style}-Attribut haben, in dem CSS-Eigenschaften direkt für ein einziges Element definiert werden können.
 \begin{codebox}{html}{}
 Ein <span style="color: black">schwarzes</span> Wort.
 \end{codebox}
 
 \section*{Selektoren}
-Selektoren bestimmen, was einen Style erhalten soll. Hiermit wählen Sie HTML-Elemente, die verändert werden sollen.
+Selektoren bestimmen, auf welche Elemente ein bestimmter Style angewendet werden soll.
 \vspace{0.2cm}
 
 Der \textbf{Element-Selektor} wählt alle Elemente direkt über den Namen des Elements aus.
@@ -57,7 +56,7 @@ h1 {
 }
 \end{codebox}
 
-Der \textbf{Class-Selektor} kann über das class-Attribut eines Elements gesetzt werden.
+Der \textbf{Class-Selektor} kann über das \texttt{class}-Attribut eines Elements gesetzt werden.
 \begin{codebox}{html}{}
 <div class="content">Inhalt</div>
 \end{codebox}
@@ -92,6 +91,8 @@ Der \textbf{id-Selektor} wählt das Element mit der zugehörigen id aus. Achtung
 
 
 \section*{Einheiten}
+Es gibt haufenweise CSS-Einheiten \cite{mdn-units}, hier eine kleine Auswahl.
+
 \subsection*{Farben}
 \begin{codebox}{css}{}
 color: red;            /* Schlüsselwort */
@@ -109,22 +110,35 @@ line-height: 1.2em; /* Größe relativ zur Breite eines "m" */
 
 Achtung: Pixel sind gedachte 96dpi Pixel, und damit oftmals nicht wirklich exakt ein Pixel.
 
+\subsection*{Zusammenfassende Attribute}
+Viele Attribute, insbesondere die, die mit Positionen arbeiten, nehmen auch mehrere Parameter:
+
+\begin{codebox}{css}{}
+padding: 1em 2em 3em 4em;
+/* ist gleichbedeutend mit */
+padding-top: 1em;
+padding-right: 2em;
+padding-bottom: 3em;
+padding-left: 4em;
+/* also beginnend "von oben" im Uhrzeigersinn. */
+\end{codebox}
+
 
 \section*{Eigenschaften}
 Eigenschaften müssen in Selektoren stehen. Es gibt buchstäblich hunderte CSS-Eigenschaften\cite{w3c-css}, hier daher nur eine kleine Auswahl.
 
 \subsection*{Aussehen}
-Die \textbf{background-color}-Eigenschaft setzt die Hintergrundfarbe eines Elements.
+Die \texttt{background-color}-Eigenschaft setzt die Hintergrundfarbe eines Elements.
 \begin{codebox}{css}{title="test"}
 background-color: #FF0000;
 \end{codebox}
 
-Die \textbf{background-image}-Eigenschaft legt ein Hintergrundbild für ein Element fest. Hintergrundbilder werden immer über Hintergrundfarben gelegt.
+Die \texttt{background-image}-Eigenschaft legt ein Hintergrundbild für ein Element fest. Hintergrundbilder werden immer über Hintergrundfarben gelegt.
 \begin{codebox}{css}{}
 background-image: url("pfad/zum/bild.jpg");
 \end{codebox}
 
-Die \textbf{border}-Eigenschaft legt die Eigenschaften des Rahmens eines Elementes fest
+Die \texttt{border}-Eigenschaft legt die Eigenschaften des Rahmens eines Elementes fest
 \begin{codebox}{css}{}
 border-width: 1px;
 border-style: solid;
@@ -134,14 +148,23 @@ border-color: #00FF00;
 
 
 \subsection*{Layout}
-Die \textbf{float}-Eigenschaft bestimmt, ob ein Element aus dem normalen Fluss herausgelöst werden soll und nachfolgende Inhalte auf der linken oder rechten Seite des Elements platziert werden sollen.
+\includesvg{css-box-model.svg}
+
+Die \texttt{position}-Eigenschaft legt die Positionsart eines Elements fest. Für die Positionierung selbst werden die Eigenschaften top, right, bottom oder left verwendet. Die \texttt{position}-Eigenschaft hat wichtige Auswirkungen auf andere Attribute.
+\begin{codebox}{css}{}
+position: absolute;
+position: relative;
+position: fixed;
+\end{codebox}
+
+Die \texttt{float}-Eigenschaft bestimmt, ob ein Element aus dem normalen Fluss herausgelöst werden soll und nachfolgende Inhalte auf der linken oder rechten Seite des Elements platziert werden sollen.
 \begin{codebox}{css}{}
 float: left;
 float: right;
 float: none;
 \end{codebox}
 
-Die \textbf{margin}-Eigenschaften sind für die Außenabstände aller vier Seiten eines Elements verantwortlich.
+Die \texttt{margin}-Eigenschaften sind für die Außenabstände aller vier Seiten eines Elements verantwortlich.
 \begin{codebox}{css}{}
 margin-top: 10px;
 margin-right: 5%;
@@ -149,7 +172,7 @@ margin-bottom: 1em;
 margin-left: auto;
 \end{codebox}
 
-Die \textbf{padding}-Eigenschaften sind für die Innenabstände aller vier Seiten eines Elementes verantwortlich.
+Die \texttt{padding}-Eigenschaften sind für die Innenabstände aller vier Seiten eines Elementes verantwortlich.
 \begin{codebox}{css}{}
 padding-top: 10px;
 padding-right: 5%;
@@ -157,43 +180,34 @@ padding-bottom: 1em;
 padding-left: auto;
 \end{codebox}
 
-Die \textbf{position}-Eigenschaft legt die Positionsart eines Elements fest. Für die Positionierung selbst werden die Eigenschaften top, right, bottom oder left verwendet.
-\begin{codebox}{css}{}
-position: absolute;
-position: relative;
-position: fixed;
-\end{codebox}
-
-\includesvg{css-box-model.svg}
 
 \subsection*{Text}
-
-Die CSS Eigenschaft \textbf{color} setzt die Vordergrundfarbe des Textinhalts eines Elements und seiner Dekorationen.
+Die CSS Eigenschaft \texttt{color} setzt die Vordergrundfarbe des Textinhalts eines Elements und seiner Dekorationen.
 \begin{codebox}{css}{}
 color: #FF00FF;
 \end{codebox}
 
-Die CSS Eigenschaft \textbf{text-align} beschreibt, wie Inlineinhalte wie Text in ihrem Elternblockelement ausgerichtet werden.
+Die CSS Eigenschaft \texttt{text-align} beschreibt, wie Inlineinhalte wie Text in ihrem Elternblockelement ausgerichtet werden.
 \begin{codebox}{css}{}
 text-align: center;
 \end{codebox}
 
-Die \textbf{text-decoration} Eigenschaft wird dazu verwendet, die Textformatierung auf underline, overline, line-through oder blink zu setzen.
+Die \texttt{text-decoration} Eigenschaft wird dazu verwendet, den Text mit weiteren Dingen zu dekorieren, mögliche Werte sind: \texttt{underline}, \texttt{overline}, \texttt{line-through} oder \texttt{blink}.
 \begin{codebox}{css}{}
 text-decoration: underline;
 \end{codebox}
 
-Die \textbf{font-family} erlaubt es, eine priorisierte Liste von Schriftfamiliennamen für ein ausgewähltes Element anzugeben. Achtung: Die Schrift muss auf dem Anzeigegerät auch vorhanden sein!
+Die \texttt{font-family} erlaubt es, eine priorisierte Liste von Schriftfamiliennamen anzugeben. Achtung: Die Schrift muss auf dem Anzeigegerät auch vorhanden sein!
 \begin{codebox}{css}{}
 font-family: "Helvetica", "Arial", sans-serif;
 \end{codebox}
 
-Die \textbf{font-size} spezifiziert die Schriftgöße.
+Die \texttt{font-size} spezifiziert die Schriftgöße.
 \begin{codebox}{css}{}
 font-size: 12px;
 \end{codebox}
 
-Die \textbf{font-style} legt fest ob eine Schriftart als normal, italic oder oblique angezeigt wird.
+Die \texttt{font-style} legt fest ob eine Schriftart als normal, italic oder oblique angezeigt wird.
 \begin{codebox}{css}{}
 font-style: italic;
 \end{codebox}

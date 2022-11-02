@@ -12,8 +12,12 @@ This is both a collection of cheatsheets and a way to write/compile cheatsheets 
 
 ## Build Requirements
 
-tex/latex environment
+tex/latex environment (ubuntu)
 sudo apt install texlive-lang-german raleway texlive-fonts-extra texlive-bibtex-extra biber
+
+tex/latex environment (fedora), see <https://unix.stackexchange.com/a/199641>
+sudo dnf install texlive-german texlive-collection-fontsextra texlive-raleway texlive-bibtex biber latexmk texlive-babel-german texlive-fontawesome texlive-scheme-full texlive-svg texlive-minted
+
 
 for minted (code highlighting)
 - add `--shell-escape` to your typesetting executable (in texworks, or in your compile script)

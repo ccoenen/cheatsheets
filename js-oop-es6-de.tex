@@ -1,0 +1,147 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[ngerman]{babel}
+
+\input{lib/template-layout-and-fonts}
+\input{lib/template-source-and-license}
+\input{lib/template-codebox}
+\input{lib/template-bibtex}
+
+\definecolor{accentcolor}{HTML}{dfc200}
+\bibliography{js-oop-es6-de}
+
+\begin{document}
+
+{\color{accentcolor}Objektorientierung und Module in JavaScript}
+
+\begin{multicols}{3}
+
+\scriptsize
+%--------------MAIN CONTENT HERE----------------
+
+Objektorientiertes Programmieren ist eine Art zu programmieren. Hierbei ist ein großer Teil des Programmcodes in Objekte aufgeteilt, die miteinander interagieren. Ein Objekt fasst die \textbf{Attribute} eines Objekts und die \textbf{Methoden}, die damit arbeiten, zusammen.\par
+
+In JavaScript und anderen Sprachen definiert man dafür \textbf{Klassen} und daraufhin kann man von diesen Klassen \textbf{Instanzen} erzeugen (instanziieren).
+
+Klassen können von anderen Klassen \textbf{erben}, so können Klassen immer speziellere Probleme lösen.
+
+Dieses Cheatsheet geht von grundlegenden JavaScript-Kenntnissen aus.
+
+\subsection*{Klassendefinition}
+
+Klassen sind die Vorlagen oder Blaupausen für Ihre späteren Objekte. Üblicherweise werden aus einer einzelnen Klasse viele Instanzen erzeugt. Zum Beispiel hat man eine \texttt{Person}-Klasse, aber viele Instanzen, die jeweils einzelne Personen repräsentieren.
+
+\begin{codebox}{js}{}
+class Person {
+  constructor(name, occupation) {
+    this.name = name;
+    this.occupation = occupation;
+  }
+
+  greet() {
+    console.log(this.name  + " says hi!");
+  }
+}
+\end{codebox}
+
+Eine Klasse definiert man mit dem Schlüsselwort \texttt{class} gefolgt vom Namen der Klasse. Der Name wird üblicherweise groß geschrieben. In den darauf folgenden geschweiften Klammern ist die definition der Klasse enthalten.
+
+\textbf{Methoden} sind die Funktionen eines Objekts, innerhalb einer Klassendefinition brauchen sie aber kein \texttt{function}-Schlüsselwort. Man schreibt sie einfach direkt hin, wie \texttt{greet()} oder \texttt{constructor()} im vorigen Beispiel.
+
+\subsection*{Instanz(en)}
+\begin{codebox}{js}{}
+let peter = new Person("Peter Parker", "photographer");
+peter.greet();
+// gibt "Peter Parker says hi!" aus.
+
+let pepper = new Person("Virginia Potts", "secretary");
+console.log(pepper.occupation);
+// gibt "secretary" aus.
+\end{codebox}
+
+Instanzen erzeugen wir mit dem \texttt{new}-Schlüsselwort. Wir erhalten ein Objekt, dessen Methoden wir aufrufen können (\texttt{peter.greet();}) oder dessen Attribute wir abfragen und ändern können (\texttt{pepper.occupation}). Dabei verwenden wir die Schreibweise mit dem Punkt, die Sie auch aus einfachen JavaScript-Objekten schon kennen.
+
+\subsection*{Konstruktor}
+In den vorigen Beispielen haben wir den Konstruktor gleich schon verwendet. Dies ist eine besondere Methode, die immer gleich heißt (\texttt{constructor()}), die automatisch von JavaScript beim instanziieren aufgerufen wird. Die Parameter, die wir \texttt{new Person("Peter Parker", "photographer");} mitgeben, landen im \texttt{constructor()} und können dort verarbeitet -werden.
+
+\subsection*{\texttt{this}}
+Wir haben nun verschiedene Instanzen unserer Klasse. Innerhalb der Klasse können wir die Variablen \texttt{peter} oder \texttt{pepper} nicht verwenden, wir müssen also anders an "unsere" Attribute und Methoden heran kommen. Dafür ist das Schlüsselwort \texttt{this} da. \texttt{this} bezieht sich immer auf die gerade verwendete Instanz. Deswegen haben die beiden nachfolgenden Aufrufe verschiedene Ausgaben:
+
+\begin{codebox}{js}{}
+peter.greet();
+// gibt "Peter Parker says hi!" aus.
+
+pepper.greet();
+// gibt "Virvinia Potts says hi!" aus.
+\end{codebox}
+
+
+\subsection*{Vererbung}
+Klassen können voneinander erben. Dadurch kann man spezielle Klassen von allgemeinen Klassen ableiten, ohne dass man den allgemeinen Code kopieren muss.
+
+\begin{codebox}{js}{}
+class Shopkeeper extends Person {
+  constructor(name) {
+    super(name, "shopkeeper");
+
+    this.items = [];
+    this.money = 0;
+  }
+
+  buy(item, cost) {
+    this.items.push(item);
+    this.money -= cost;
+  }
+
+  sell(item, price) {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      this.money += cost;
+    } else {
+      console.error(`${this.name} does not have ${item}`);
+    }
+  }
+}
+
+let tom = new Shopkeeper("Tom Nook");
+tom.buy("flower", 5);
+tom.sell("flower", 6);
+console.log(tom.money); // 1
+tom.greet(); // "Tom Nook says hi!"
+console.log(tom.occupation); // "shopkeeper"
+\end{codebox}
+
+\texttt{Shopkeeper} erbt in diesem Beispiel von \texttt{Person}. Daher können wir auf \texttt{occupation} oder \texttt{name} oder \texttt{greet()} zurück greifen ohne dass wir sie neu erstellen müssten. Gleichzeitig erweitert der Shopkeeper eigene Attribute (\texttt{items} und \texttt{money}) und Methoden (\texttt{buy()} und \texttt{sell()}).
+
+\subsection*{\texttt{super}}
+Im Zusammenhang mit Vererbung will man oftmals den Konstruktor der übergeordneten Klasse ebenfalls ausführen. Dafür gibt es die besondere Funktion \texttt{super()}. Im \texttt{Shopkeeper}-Beispiel kann man sehen, dass der neue Konstruktor auch andere Parameter übernehmen und weiter geben kann.
+
+\subsection*{(todo, merkliste)}
+Getter? Setter?
+
+Klassendiagramm
+
+
+
+%new page starts heres
+\newpage
+
+\subsection*{ES6 Module}
+Objektorientierung und Module sind zwei verschiedene Dinge, aber sie gehen gerne Hand in Hand.
+
+%\subsection*{Grundgerüst}
+%Einige Dinge muss jedes HTML-Dokument enthalten, das Folgende ist das Minimale, was eine HTML-Datei braucht:
+
+%Das \texttt{<html>}-Tag. (\enquote{Nachkommen} bzw. \enquote{Kind-Elemente}):
+
+%% These are actually no longer neccessary, but this would be one way of leaving an intended gap at the bottom of a column:
+% \vfill\null
+% \columnbreak
+
+%-------------MAIN CONTENT DONE----------------
+
+
+\printbibliography
+\attribution{Claudius Coenen}
+\end{multicols}
+\end{document}

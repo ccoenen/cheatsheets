@@ -1,0 +1,228 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[ngerman]{babel}
+
+\input{lib/template-layout-and-fonts}
+\input{lib/template-source-and-license}
+\input{lib/template-codebox}
+\input{lib/template-bibtex}
+
+\definecolor{accentcolor}{HTML}{cad804}
+\bibliography{js-basics}
+
+\begin{document}
+
+{\color{accentcolor}JavaScript Basics Cheatsheet}
+
+\begin{multicols}{3}
+
+\scriptsize
+
+% \textbf{} <-- strong
+% \texttt{} <-- monospaced, no hightlighting
+% \enquote{} <-- put stuff in correct quotes
+% \begin{codebox}{lang}{} <-- start a codebox in "lang" language
+% \end{codebox} <-- finishes the codeblock started with \begin{codebox}
+
+%--------------MAIN CONTENT HERE----------------
+
+JavaScript ist nicht gleich Java und auch nicht mit Java verwandt. JavaScript existiert seit 1997 und wurde ursprünglich als Scriptsprache im Browser erfunden. Eine gute Quelle für verlässliche Information ist die JavaScript Referenz im Mozilla Developer Network \cite{mdn-js}.
+
+\section*{Codebeispiel}
+\begin{codebox}{js}{}
+  abcde
+\end{codebox}
+
+
+\section*{Sprachelemente}
+
+\subsection*{Variablen}
+In Variablen können Werte gespeichert werden. Variablen werden mit dem Keyword \texttt{let} erzeugt (\enquote{deklariert}). Auch \texttt{const} (unveränderliche Konstanten) und \texttt{var} (veraltete Schreibweise) sind möglich. Danach folgt der Variablenname und das Gleichheitszeichen um der Variable einen Wert zuzuordnen.
+\begin{codebox}{js}{}
+  let greeting = "Hello World";
+\end{codebox}
+
+\subsection*{Funktionen}
+Funktionen machen Code wiederverwendbar. Sie können so oft wie man möchte ausgeführt werden. Erzeugt werden sie mit dem Keyword \texttt{function} gefolgt vom Funktionsnamen, runden Klammern für Parameter und dann geschweiften Klammern für die Anweisungen in der Funktion.
+\begin{codebox}{js}{}
+  function add(a, b) {
+    // anweisungen hier
+  }
+\end{codebox}
+Die eben definierte Funktion können wir so aufrufen:
+\begin{codebox}{js}{}
+  add(5, 7);
+\end{codebox}
+\texttt{5} und \texttt{7} sind hierbei Parameter der Funktion, die in der Funktion dann verwendet werden können.
+
+Funktionen können auch Werte \textbf{returnen} (an den Aufrufer zurückgeben). Dafür verwendet man das Keyword \texttt{return} am Ende einer Funktion gefolgt von einer Variable oder einem Wert.
+\begin{codebox}{js}{}
+  function add(a, b) {
+    let sum = a + b;
+    return sum;
+  }
+  
+  let lifeChangingResult = add(17, 25);
+  console.log(lifeChangingResult); // gibt 42 aus.
+\end{codebox}
+
+
+\subsection*{Kommentare}
+Mit Kommentaren kann man einzelne Zeilen oder Bereiche beschreiben. Kommentare werden vom Computer nicht ausgeführt sondern einfach übersprungen. Es gibt einzeilige Kommentare, die mit \texttt{//} beginnen und bis zum Zeilenende gelten:
+\begin{codebox}{js}{}
+  // Das ist ein toller Kommentar!
+  let city = "Arendelle"; // geht auch "nach" normalem Code!
+\end{codebox}
+
+Und mehrzeilige Kommentare, die zwischen \texttt{/*} und \texttt{*/} stehen.
+\begin{codebox}{js}{}
+  /* Hier kann man auch längere Texte unterbringen,
+  denn dieser Kommentar hört erst auf, wenn
+  das hier kommt: */
+\end{codebox}
+
+Das kann man sich auch zunutze machen, um Code kurzzeitig zu deaktivieren ohne ihn zu löschen (\enquote{auskommentieren}).
+\begin{codebox}{js}{}
+  // let powerLevel = 42; // this was too low.
+  let powerLevel = 9001; // IT'S OVER 9000!
+
+  /*
+  let x = 100;
+  let y = 200;
+  let radius = 20;
+  */
+  let data = {
+    x: 100,
+    y: 200,
+    radius: 20
+  };
+\end{codebox}
+
+\subsection*{Strings}
+Ein String kann Zeichenketten beinhalten, das heißt, einzelne Zeichen, Wörter oder ganze Sätze.
+\begin{codebox}{js}{}
+  let name = "Harald Töpfer";
+\end{codebox}
+Man kann unterschiedliche Strings auch miteinander kombinieren.
+\begin{codebox}{js}{}
+  let firstName = "Harald";
+  let lastName = "Töpfer";
+  let name = firstName + " " + lastName;
+\end{codebox}
+
+\subsection*{Numbers}
+Eine \texttt{Number} kann alle Arten von Zahlen beinhalten, das heißt, Fließkommazahlen (\texttt{Float}) und ganze Zahlen (\texttt{Integer}). Bei Fließkommazahlen nutzt man einen \textbf{Punkt als Trenner}.
+\begin{codebox}{js}{}
+  let myInteger = 42;
+  let myFloat = 13.5;
+\end{codebox}
+Mit Variablen vom Typ \texttt{Number} kann man auch rechnen.
+\begin{codebox}{js}{}
+  let rows = 25;
+  let columns = 3;
+  let fields = rows * columns; // "fields" will be 75
+\end{codebox}
+
+\subsection*{Booleans / Bool}
+Ein \texttt{Bool} beinhaltet einen booleschen Wert, das heißt, einen Wert der nur zwei Zustände annehmen kann: wahr (\texttt{true}) oder falsch (\texttt{false}).
+\begin{codebox}{js}{}
+  let darkMode = true;
+  let dyslexicFont = false;
+\end{codebox}
+
+
+\section*{Ausgabe}
+Um sich den Wert einer Variable ausgeben zu lassen, kann man \texttt{console.log()} verwenden:
+\begin{codebox}{js}{}
+let myInteger = 42;
+console.log(myInteger); // gibt 42 aus
+\end{codebox}
+Diese Ausgabe landet im Browser in den Entwicklertools. In VSCodium kommt sie in ein Fenster, das "Ausgabe" heißt und in NodeJS landet sie in dem Terminal, das das Script ausführt.
+
+
+\section*{Bedingungen bzw. Verzweigungen}
+Nur wenn die Bedingung erfüllt ist, wird der Code innerhalb der geschweiften Klammern ausgeführt (Action-Block).
+\begin{codebox}{js}{}
+  let x = 100;
+  if (x === 100) {
+    // Der Code der nur ausgeführt wird,
+    // wenn x den Wert 100 hat
+  }
+\end{codebox}
+Man kann mehrere Bedingungen miteinander verknüpfen, die erste wahre Bedingung wird ausgeführt. Wenn nichts zutrifft wird der Code im else-Action-Block ausgeführt.
+\begin{codebox}{js}{}
+  let x = 100;
+  if (x < 100) {
+    // Wird ausgeführt wenn x kleiner 100
+  } else if (x < 200) {
+    // Wird ausgeführt wenn x größer
+    // gleich 100 und kleiner als 200 ist
+  } else {
+    // Wird in allen anderen Fällen ausgeführt
+  }
+\end{codebox}
+
+
+\section*{Operatoren}
+\subsection*{Vergleiche}
+Diese Operatoren vergleichen zwei Werte miteinander, zum Beispiel in einer Bedingung:
+\begin{codebox}{js}{}
+  if (x < 100) {
+    // Führe den Code nur aus,
+    // wenn x kleiner als 100 ist
+  }
+\end{codebox}
+Wenn der Vergleich erfüllt ist, geben sie \texttt{true} zurück, wenn der Vergleich nicht erfüllt ist, geben sie \texttt{false} zurück. Hier eine Auswahl gängiger Vergleichs-Operatoren:
+
+\vspace{0.5cm}
+\begin{tabular}{c l}
+  \texttt{===} & Vergleicht ob der linke \textbf{gleich} dem rechten Wert ist \\
+  \texttt{!==} & Vergleicht ob der linke \textbf{ungleich} dem rechten Wert ist \\
+  \texttt{>} & Vergleicht ob der linke Wert \textbf{größer} als der rechte ist \\
+  \texttt{>=} & Vergleicht ob der linke Wert \textbf{größer oder gleich} dem rechten Wert ist \\
+  \texttt{<} & Vergleicht ob der linke Wert \textbf{kleiner} als der rechte ist \\
+  \texttt{<=} & Vergleicht ob der linke Wert \textbf{kleiner oder gleich} dem rechten Wert ist \\
+\end{tabular}
+
+\subsection*{Logische Verknüpfungen}
+Mit diesen Operatoren können Sie verschiedene Dinge verknüpfen:
+Beim \textbf{UND}-Operator \texttt{\&\&} müssen beide Bedingungen erfüllt sein, damit der Code ausgeführt wird:
+\begin{codebox}{js}{}
+  if (player.allergicTo === "nuts" && food === "nut") {
+    // wenn beides zutrifft ist das ziemlich ungünstig.
+    player.health--;
+  }
+\end{codebox}
+Beim \textbf{ODER}-Operator \texttt{||} muss nur eine Bedingung erfüllt sein, damit der Code ausgeführt wird:
+\begin{codebox}{js}{}
+  if (x > 100 || y > 100) {
+    /* ... */
+  }
+\end{codebox}
+Diese Ausdrücke dürfen beliebig kompliziert werden und man kann zur besseren Lesbarkeit auch Klammern verwenden.
+
+\section*{Praktische Dinge}
+\subsection*{Rundung}
+Klassisches, mathematisches Runden (also alles was kleiner als 0,5 ist, wird abgerundet; alles was 0,5 oder größer ist, wird aufgerundet).
+\begin{codebox}{js}{}
+  let value = Math.round(12.3); // value wird 12 sein.
+\end{codebox}
+Abrunden (floor = Fußboden).
+\begin{codebox}{js}{}
+  let value = Math.floor(12.9999999); // value wird dennoch zu 12 abgerundet.
+\end{codebox}
+Aufrunden (ceiling = Decke).
+\begin{codebox}{js}{}
+  let value = Math.ceil(12.3); // value wird zu 13 aufgerundet
+\end{codebox}
+
+\subsection*{Zufall}
+\subsection*{Winkel}
+\subsection*{Datum und Zeit}
+
+%-------------MAIN CONTENT DONE----------------
+
+
+\printbibliography
+\attribution{Garrit Schaap \& Claudius Coenen}
+\end{multicols}
+\end{document}

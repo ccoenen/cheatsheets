@@ -27,22 +27,17 @@
 
 JavaScript ist nicht gleich Java und auch nicht mit Java verwandt. JavaScript existiert seit 1997 und wurde ursprünglich als Scriptsprache im Browser erfunden. Eine gute Quelle für verlässliche Information ist die JavaScript Referenz im Mozilla Developer Network \cite{mdn-js}.
 
-\section*{Codebeispiel}
-\begin{codebox}{js}{}
-  abcde
-\end{codebox}
-
-
 \section*{Sprachelemente}
 
 \subsection*{Variablen}
 In Variablen können Werte gespeichert werden. Variablen werden mit dem Keyword \texttt{let} erzeugt (\enquote{deklariert}). Auch \texttt{const} (unveränderliche Konstanten) und \texttt{var} (veraltete Schreibweise) sind möglich. Danach folgt der Variablenname und das Gleichheitszeichen um der Variable einen Wert zuzuordnen.
 \begin{codebox}{js}{}
   let greeting = "Hello World";
+  const ANSWER = 42;
 \end{codebox}
 
 \subsection*{Funktionen}
-Funktionen machen Code wiederverwendbar. Sie können so oft wie man möchte ausgeführt werden. Erzeugt werden sie mit dem Keyword \texttt{function} gefolgt vom Funktionsnamen, runden Klammern für Parameter und dann geschweiften Klammern für die Anweisungen in der Funktion.
+Funktionen machen Code \textbf{wiederverwendbar}. Sie können so oft wie man möchte ausgeführt werden. Erzeugt werden sie mit dem Keyword \texttt{function} gefolgt vom Funktionsnamen, runden Klammern für Parameter und dann geschweiften Klammern für die Anweisungen in der Funktion.
 \begin{codebox}{js}{}
   function add(a, b) {
     // anweisungen hier
@@ -52,7 +47,7 @@ Die eben definierte Funktion können wir so aufrufen:
 \begin{codebox}{js}{}
   add(5, 7);
 \end{codebox}
-\texttt{5} und \texttt{7} sind hierbei Parameter der Funktion, die in der Funktion dann verwendet werden können.
+\texttt{5} und \texttt{7} sind hierbei \textbf{Parameter} der Funktion, die in der Funktion dann verwendet werden können.
 
 Funktionen können auch Werte \textbf{returnen} (an den Aufrufer zurückgeben). Dafür verwendet man das Keyword \texttt{return} am Ende einer Funktion gefolgt von einer Variable oder einem Wert.
 \begin{codebox}{js}{}
@@ -67,7 +62,7 @@ Funktionen können auch Werte \textbf{returnen} (an den Aufrufer zurückgeben). 
 
 
 \subsection*{Kommentare}
-Mit Kommentaren kann man einzelne Zeilen oder Bereiche beschreiben. Kommentare werden vom Computer nicht ausgeführt sondern einfach übersprungen. Es gibt einzeilige Kommentare, die mit \texttt{//} beginnen und bis zum Zeilenende gelten:
+Mit Kommentaren kann man einzelne Zeilen oder Bereiche beschreiben. Kommentare werden vom Computer \textbf{nicht ausgeführt} sondern einfach übersprungen. Es gibt einzeilige Kommentare, die mit \texttt{//} beginnen und bis zum Zeilenende gelten:
 \begin{codebox}{js}{}
   // Das ist ein toller Kommentar!
   let city = "Arendelle"; // geht auch "nach" normalem Code!
@@ -98,7 +93,7 @@ Das kann man sich auch zunutze machen, um Code kurzzeitig zu deaktivieren ohne i
 \end{codebox}
 
 \subsection*{Strings}
-Ein String kann Zeichenketten beinhalten, das heißt, einzelne Zeichen, Wörter oder ganze Sätze.
+Ein String kann Zeichenketten beinhalten. Zeichenketten sind einzelne Zeichen, Wörter oder ganze Sätze.
 \begin{codebox}{js}{}
   let name = "Harald Töpfer";
 \end{codebox}
@@ -110,7 +105,7 @@ Man kann unterschiedliche Strings auch miteinander kombinieren.
 \end{codebox}
 
 \subsection*{Numbers}
-Eine \texttt{Number} kann alle Arten von Zahlen beinhalten, das heißt, Fließkommazahlen (\texttt{Float}) und ganze Zahlen (\texttt{Integer}). Bei Fließkommazahlen nutzt man einen \textbf{Punkt als Trenner}.
+Eine \texttt{Number} kann alle Arten von Zahlen beinhalten. Dazu zählen Fließkommazahlen (\texttt{Float}) und ganze Zahlen (\texttt{Integer}). Bei Fließkommazahlen nutzt man einen \textbf{Punkt als Trenner}. Zahlen schreibt man nicht in Anführungszeichen, sonst werden sie wie Zeichenketten behandelt.
 \begin{codebox}{js}{}
   let myInteger = 42;
   let myFloat = 13.5;
@@ -136,7 +131,7 @@ Um sich den Wert einer Variable ausgeben zu lassen, kann man \texttt{console.log
 let myInteger = 42;
 console.log(myInteger); // gibt 42 aus
 \end{codebox}
-Diese Ausgabe landet im Browser in den Entwicklertools. In VSCodium kommt sie in ein Fenster, das "Ausgabe" heißt und in NodeJS landet sie in dem Terminal, das das Script ausführt.
+Diese Ausgabe landet im Browser in den Entwicklertools. In VSCodium kommt sie in ein Fenster, das Ausgabe heißt und in NodeJS landet sie in dem Terminal, das das Script ausführt.
 
 
 \section*{Bedingungen bzw. Verzweigungen}
@@ -144,18 +139,18 @@ Nur wenn die Bedingung erfüllt ist, wird der Code innerhalb der geschweiften Kl
 \begin{codebox}{js}{}
   let x = 100;
   if (x === 100) {
-    // Der Code der nur ausgeführt wird,
-    // wenn x den Wert 100 hat
+    // Dieser Code wird nur ausgeführt,
+    // wenn x genau den Wert 100 hat
   }
 \end{codebox}
-Man kann mehrere Bedingungen miteinander verknüpfen, die erste wahre Bedingung wird ausgeführt. Wenn nichts zutrifft wird der Code im else-Action-Block ausgeführt.
+Man kann mit \texttt{else if} mehrere Bedingungen aufeinander folgen lassen, die erste wahre Bedingung wird ausgeführt. Wenn nichts zutrifft wird der Code im \texttt{else}-Action-Block ausgeführt.
 \begin{codebox}{js}{}
   let x = 100;
   if (x < 100) {
     // Wird ausgeführt wenn x kleiner 100
   } else if (x < 200) {
-    // Wird ausgeführt wenn x größer
-    // gleich 100 und kleiner als 200 ist
+    // Wird ausgeführt wenn x größer-gleich 100
+    // und kleiner als 200 ist
   } else {
     // Wird in allen anderen Fällen ausgeführt
   }
@@ -183,6 +178,8 @@ Wenn der Vergleich erfüllt ist, geben sie \texttt{true} zurück, wenn der Vergl
   \texttt{<=} & Vergleicht ob der linke Wert \textbf{kleiner oder gleich} dem rechten Wert ist \\
 \end{tabular}
 
+Es gibt außerdem die einfachen Vergleiche \texttt{==} und \texttt{!=}, die Dinge über Datentypen hinaus vergleichen können. In der Regel sollten aber die typensicheren Vergleiche \texttt{===} und \texttt{!==} zum einsatz kommen.
+
 \subsection*{Logische Verknüpfungen}
 Mit diesen Operatoren können Sie verschiedene Dinge verknüpfen:
 Beim \textbf{UND}-Operator \texttt{\&\&} müssen beide Bedingungen erfüllt sein, damit der Code ausgeführt wird:
@@ -194,8 +191,8 @@ Beim \textbf{UND}-Operator \texttt{\&\&} müssen beide Bedingungen erfüllt sein
 \end{codebox}
 Beim \textbf{ODER}-Operator \texttt{||} muss nur eine Bedingung erfüllt sein, damit der Code ausgeführt wird:
 \begin{codebox}{js}{}
-  if (x > 100 || y > 100) {
-    /* ... */
+  if (waitingTime > 10 || lectureDuration > 120) {
+    getBored();
   }
 \end{codebox}
 Diese Ausdrücke dürfen beliebig kompliziert werden und man kann zur besseren Lesbarkeit auch Klammern verwenden.
@@ -215,9 +212,9 @@ Aufrunden (ceiling = Decke).
   let value = Math.ceil(12.3); // value wird zu 13 aufgerundet
 \end{codebox}
 
-\subsection*{Zufall}
-\subsection*{Winkel}
-\subsection*{Datum und Zeit}
+%\subsection*{Zufall}
+%\subsection*{Winkel}
+%\subsection*{Datum und Zeit}
 
 %-------------MAIN CONTENT DONE----------------
 

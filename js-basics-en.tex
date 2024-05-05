@@ -1,0 +1,205 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[english]{babel}
+
+\input{lib/template-layout-and-fonts}
+\input{lib/template-source-and-license}
+\input{lib/template-codebox}
+\input{lib/template-bibtex}
+
+\definecolor{accentcolor}{HTML}{cad804}
+\bibliography{js-basics}
+
+\begin{document}
+
+{\color{accentcolor}JavaScript Basics Cheatsheet}
+
+\begin{multicols}{3}
+
+\scriptsize
+
+% \textbf{} <-- strong
+% \texttt{} <-- monospaced, no hightlighting
+% \enquote{} <-- put stuff in correct quotes
+% \begin{codebox}{lang}{} <-- start a codebox in "lang" language
+% \end{codebox} <-- finishes the codeblock started with \begin{codebox}
+
+%--------------MAIN CONTENT HERE----------------
+
+JavaScript is not Java - it's not even related to Java. It has existed since 1997 and was originally created as a scripting language for browsers. A great source of reliable information is the JavaScript reference on the Mozilla Developer Network \cite{mdn-js}.
+
+\section*{Building Blocks}
+
+\subsection*{Variables}
+Variables contain values. Variables are created (\enquote{declared}) with \texttt{let}. There are two other similar things: \texttt{const} creates variables that can't be re-assigned and \texttt{var} is a legacy way of declaring variables. Following the declaration usually comes the name of the variable, an equals sign (\enquote{=}) and some value that is assigned to the variable.
+
+\begin{codebox}{js}{}
+  let greeting = "Hello World";
+  const ANSWER = 42;
+\end{codebox}
+
+\subsection*{Functions}
+Functions create \textbf{reusable} code. You can run them as often as you want. They are created with the keyword \texttt{function}, followed by the function name, parentheses and curly braces. The parentheses can contain parameters, the curly braces contain the instructions the function should execute.
+
+\begin{codebox}{js}{}
+  function add(a, b) {
+    // instructions how to add two numbers
+  }
+\end{codebox}
+We can execute (or \enquote{call}) our function like this:
+\begin{codebox}{js}{}
+  add(5, 7);
+\end{codebox}
+\texttt{5} and \texttt{7} are \textbf{parameters} of the function that can be used within the function's instructions.
+
+Functions can also \textbf{return} values (give values back to the place calling the function). To do this, we use the keyword \texttt{return} followed by the value your function should return.
+
+\begin{codebox}{js}{}
+  function add(a, b) {
+    let sum = a + b;
+    return sum;
+  }
+  
+  let lifeChangingResult = add(17, 25);
+  console.log(lifeChangingResult); // prints 42.
+\end{codebox}
+
+There's also a shorthand for functions that is very often seen in event handlers: \texttt{() => {}}. We call this an \textbf{arrow-function}.
+\begin{codebox}{js}{}
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+  });
+\end{codebox}
+Here, we create an anonymous arrow function that takes a parameter \texttt{event}. We add this as an eventListener that reacts to a mouse click on some button element that's not part of the example.
+
+\subsection*{Comments}
+Comments can help by adding descriptions to parts of your code. Comments are \textbf{not executed} by the computer. JavaScript knows single line comments that start with \texttt{//} and continue to the end of the line:
+\begin{codebox}{js}{}
+  // This is a neat comment!
+  let city = "Arendelle"; // this also works "after" code
+\end{codebox}
+
+JavaScript also has multi-line comments which span from \texttt{/*} to \texttt{*/}.
+\begin{codebox}{js}{}
+  /* within these, you can have a
+     larger amount of text.
+     Just like this. */
+\end{codebox}
+
+It is a common technique to use comments to \enquote{comment out} code that you don't want to run. It's useful for debugging.
+\begin{codebox}{js}{}
+  // let powerLevel = 42; // this was too low.
+  let powerLevel = 9001; // IT'S OVER 9000!
+
+  /*
+  let x = 100;
+  let y = 200;
+  let radius = 20;
+  */
+  let data = {
+    x: 100,
+    y: 200,
+    radius: 20
+  };
+\end{codebox}
+
+\subsection*{Strings}
+A String can contain text and similar things.
+\begin{codebox}{js}{}
+  let name = "Harald Töpfer";
+\end{codebox}
+It is possible to combine Strings:
+\begin{codebox}{js}{}
+  let firstName = "Harald";
+  let lastName = "Töpfer";
+  let name = firstName + " " + lastName;
+\end{codebox}
+
+\subsection*{Numbers}
+JavaScript has a single type for numbers, called \texttt{Number}. Internally this is a IEEE-754 "double" (64 bit) value. Numbers are not written within quotes (or they would become Strings).
+
+\begin{codebox}{js}{}
+  let myInteger = 42;
+  let myFloat = 13.5;
+\end{codebox}
+Mit Variablen vom Typ \texttt{Number} kann man auch rechnen.
+\begin{codebox}{js}{}
+  let rows = 25;
+  let columns = 3;
+  let fields = rows * columns; // "fields" will be 75
+\end{codebox}
+
+\subsection*{Booleans / Bool}
+A \texttt{Bool} contains a boolean value. In other words: a value that can only be \texttt{true} or \texttt{false}.
+\begin{codebox}{js}{}
+  let darkMode = true;
+  let dyslexicFont = false;
+\end{codebox}
+
+
+\section*{Output}
+\texttt{console.log()} can be used to output something, for example while you are debugging:
+\begin{codebox}{js}{}
+let myInteger = 42;
+console.log(myInteger); // will output 42
+\end{codebox}
+This output will appear in your browser's developer tools if you are creating a website, or in your terminal if you are creating a terminal application.
+
+
+\section*{Conditions and Branching}
+Code in curly braces will only be run if a condition in the parentheses is met.
+
+\begin{codebox}{js}{}
+  let x = 100;
+  if (x === 100) {
+    // This right here will only be executed
+    // if x is exactly 100
+  }
+\end{codebox}
+Please note that in JavaScript, comparing two values should usually be done with type safe comparison \texttt{===}.
+
+Your program might need to branch out in more different possibilities, and that's where \texttt{else if} and \texttt{else} come in. In a construction like that only one of the blocks will be executed.
+\begin{codebox}{js}{}
+  let x = 100;
+  if (x < 100) {
+    // Will be executed if x is smaller than 100
+  } else if (x < 200) {
+    // will be executed if x is greater than 100
+    // but also smaller than 200
+  } else {
+    // will be run in any other case
+  }
+\end{codebox}
+
+
+\section*{Operators}
+\subsection*{Comparisons}
+Most often, you will find comparison operators in an if-statement like this:
+
+\begin{codebox}{js}{}
+  if (x < 100) {
+    // Only execute the code if
+    // x is less than 100.
+  }
+\end{codebox}
+If a comparison checks out, it returns \texttt{true}, otherwise it returns \texttt{false}. Here's a selection of common comparison operators:
+
+\vspace{0.5cm}
+\begin{tabular}{c l}
+  \texttt{===} & checks for \textbf{strict equality} of left and right value \\
+  \texttt{!==} & checks for \textbf{unequality} of left and right value \\
+  \texttt{>} & checks if left is \textbf{greater than} right \\
+  \texttt{>=} & checks if left is \textbf{greater than or equal to} right \\
+  \texttt{<} & checks if left is \textbf{smaller than} right \\
+  \texttt{<=} & checks if left is \textbf{smaller than or equal to} right \\
+\end{tabular}
+
+Additionally, there are simple comparisons \texttt{==} and \texttt{!=} which compare across data types. For these, \texttt{5 == "5"} would be \texttt{true}. Usually, you should stick to the type safe comparisons \texttt{===} and \texttt{!==}.
+
+
+%-------------MAIN CONTENT DONE----------------
+
+
+\printbibliography
+\attribution{Garrit Schaap \& Claudius Coenen}
+\end{multicols}
+\end{document}

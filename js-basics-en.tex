@@ -121,7 +121,7 @@ JavaScript has a single type for numbers, called \texttt{Number}. Internally thi
   let myInteger = 42;
   let myFloat = 13.5;
 \end{codebox}
-Mit Variablen vom Typ \texttt{Number} kann man auch rechnen.
+It's possible to make calculations with variables of the type \texttt{Number}:
 \begin{codebox}{js}{}
   let rows = 25;
   let columns = 3;
@@ -195,6 +195,44 @@ If a comparison checks out, it returns \texttt{true}, otherwise it returns \text
 
 Additionally, there are simple comparisons \texttt{==} and \texttt{!=} which compare across data types. For these, \texttt{5 == "5"} would be \texttt{true}. Usually, you should stick to the type safe comparisons \texttt{===} and \texttt{!==}.
 
+\subsection*{Logical Combinations}
+These operators let you combine logical expressions.
+
+The \textbf{AND}-operator \texttt{\&\&} requires both conditions to be \texttt{true}:
+\begin{codebox}{js}{}
+  if (player.allergicTo === "nuts" && food === "nut") {
+    // when both things are true, we execute these lines.
+    player.health--;
+  }
+\end{codebox}
+
+The \textbf{OR}-operator \texttt{||} requires any condition to be \texttt{true}:
+\begin{codebox}{js}{}
+  if (waitingTime > 10 || lectureDuration > 120) {
+    getBored();
+  }
+\end{codebox}
+These expressions may be combined and can get as complex as you need them to be. For better readability, it is sometimes helpful to use parentheses.
+
+\section*{Helpful Things}
+\subsection*{Rounding Numbers}
+Standard rounding of numbers (values below 0.5 will be rounded down, starting from 0.5 they will be rounded up) can be done like this:
+
+\begin{codebox}{js}{}
+  let value = Math.round(12.3); // value will be 12
+\end{codebox}
+By contrast, \texttt{floor} means going \enquote{down} to the previous integer
+\begin{codebox}{js}{}
+  let value = Math.floor(12.9999999); // value will be 12
+\end{codebox}
+And finally \texttt{ceil} (\enquote{ceiling}) means going \enquote{up} the the next integer
+\begin{codebox}{js}{}
+  let value = Math.ceil(12.3); // value will be 13
+\end{codebox}
+
+%\subsection*{Zufall}
+%\subsection*{Winkel}
+%\subsection*{Datum und Zeit}
 
 %-------------MAIN CONTENT DONE----------------
 

@@ -103,6 +103,12 @@ Man kann unterschiedliche Strings auch miteinander kombinieren.
   let lastName = "Töpfer";
   let name = firstName + " " + lastName;
 \end{codebox}
+Es gibt drei Arten, Strings in JavaScript zu schreiben: double-quoted (\texttt{"}), single-quoted (\texttt{'}) und mit backticks (\texttt{`}). Backticks können mehr als die anderen Beiden. Wir nennen sie \enquote{template literals}, und so benutzt man sie:
+\begin{codebox}{js}{}
+  let firstName = "Harald";
+  let lastName = "Töpfer";
+  let name = `${firstName} ${lastName}`;
+\end{codebox}
 
 \subsection*{Numbers}
 Eine \texttt{Number} kann alle Arten von Zahlen beinhalten. Dazu zählen Fließkommazahlen (\texttt{Float}) und ganze Zahlen (\texttt{Integer}). Bei Fließkommazahlen nutzt man einen \textbf{Punkt als Trenner}. Zahlen schreibt man nicht in Anführungszeichen, sonst werden sie wie Zeichenketten behandelt.
@@ -179,6 +185,15 @@ Wenn der Vergleich erfüllt ist, geben sie \texttt{true} zurück, wenn der Vergl
 \end{tabular}
 
 Es gibt außerdem die einfachen Vergleiche \texttt{==} und \texttt{!=}, die Dinge über Datentypen hinaus vergleichen können. In der Regel sollten aber die typensicheren Vergleiche \texttt{===} und \texttt{!==} zum einsatz kommen.
+
+\subsection*{Negierung}
+Manchmal brauchen wir nur schnell das Gegenteil von dem, was wir gerade haben. Hier kommt Negierung (\texttt{!}) ins Spiel:
+\begin{codebox}{js}{}
+  let doorIsClosed = false;
+  if (!doorIsClosed) {
+    console.log("bitte mach die Tür zu.");
+  }
+\end{codebox}
 
 \subsection*{Logische Verknüpfungen}
 Mit diesen Operatoren können Sie verschiedene Dinge verknüpfen:

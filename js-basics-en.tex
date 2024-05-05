@@ -114,6 +114,13 @@ It is possible to combine Strings:
   let name = firstName + " " + lastName;
 \end{codebox}
 
+There are three ways to write strings in JavaScript double-quoted (\texttt{"}), single-quoted (\texttt{'}) and with backticks (\texttt{`}). Backticks are more powerful than the other two, they can also evaluate expressions. We call them \enquote{template literals}. This is how you can use them:
+\begin{codebox}{js}{}
+  let firstName = "Harald";
+  let lastName = "Töpfer";
+  let name = `${firstName} ${lastName}`;
+\end{codebox}
+
 \subsection*{Numbers}
 JavaScript has a single type for numbers, called \texttt{Number}. Internally this is a IEEE-754 "double" (64 bit) value. Numbers are not written within quotes (or they would become Strings).
 
@@ -186,7 +193,7 @@ If a comparison checks out, it returns \texttt{true}, otherwise it returns \text
 \vspace{0.5cm}
 \begin{tabular}{c l}
   \texttt{===} & checks for \textbf{strict equality} of left and right value \\
-  \texttt{!==} & checks for \textbf{unequality} of left and right value \\
+  \texttt{!==} & checks for \textbf{inequality} of left and right value \\
   \texttt{>} & checks if left is \textbf{greater than} right \\
   \texttt{>=} & checks if left is \textbf{greater than or equal to} right \\
   \texttt{<} & checks if left is \textbf{smaller than} right \\
@@ -194,6 +201,15 @@ If a comparison checks out, it returns \texttt{true}, otherwise it returns \text
 \end{tabular}
 
 Additionally, there are simple comparisons \texttt{==} and \texttt{!=} which compare across data types. For these, \texttt{5 == "5"} would be \texttt{true}. Usually, you should stick to the type safe comparisons \texttt{===} and \texttt{!==}.
+
+\subsection*{Negation}
+Oftentimes you just quickly need the opposite of a value. That's where negation (\texttt{!}) comes in:
+\begin{codebox}{js}{}
+  let doorIsClosed = false;
+  if (!doorIsClosed) {
+    console.log("please close the door");
+  }
+\end{codebox}
 
 \subsection*{Logical Combinations}
 These operators let you combine logical expressions.
